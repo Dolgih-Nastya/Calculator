@@ -24,6 +24,7 @@
 		24F06B9E18F9530100314339 /* NastyaCalculator3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F06B9D18F9530100314339 /* NastyaCalculator3Tests.m */; };
 		24F06BAA18F9532F00314339 /* NCCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F06BA818F9532F00314339 /* NCCalculatorViewController.m */; };
 		24F06BAB18F9532F00314339 /* NCCalculatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F06BA918F9532F00314339 /* NCCalculatorViewController.xib */; };
+		314221CC18FC14F400371D7B /* NCCalculatorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 314221CB18FC14F400371D7B /* NCCalculatorModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		24F06BA718F9532F00314339 /* NCCalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCCalculatorViewController.h; sourceTree = "<group>"; };
 		24F06BA818F9532F00314339 /* NCCalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCCalculatorViewController.m; sourceTree = "<group>"; };
 		24F06BA918F9532F00314339 /* NCCalculatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCCalculatorViewController.xib; sourceTree = "<group>"; };
+		314221CA18FC14F400371D7B /* NCCalculatorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCCalculatorModel.h; sourceTree = "<group>"; };
+		314221CB18FC14F400371D7B /* NCCalculatorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCCalculatorModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +92,8 @@
 		24F06B6618F9530100314339 = {
 			isa = PBXGroup;
 			children = (
-				24F06BA718F9532F00314339 /* NCCalculatorViewController.h */,
-				24F06BA818F9532F00314339 /* NCCalculatorViewController.m */,
-				24F06BA918F9532F00314339 /* NCCalculatorViewController.xib */,
+				314221C918FC14BD00371D7B /* Models */,
+				314221C718FC142F00371D7B /* Controllers */,
 				24F06B7A18F9530100314339 /* NastyaCalculator3 */,
 				24F06B9718F9530100314339 /* NastyaCalculator3Tests */,
 				24F06B7118F9530100314339 /* Frameworks */,
@@ -159,6 +161,33 @@
 				24F06B9A18F9530100314339 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		314221C718FC142F00371D7B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				314221C818FC144600371D7B /* Calculator */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		314221C818FC144600371D7B /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				24F06BA918F9532F00314339 /* NCCalculatorViewController.xib */,
+				24F06BA818F9532F00314339 /* NCCalculatorViewController.m */,
+				24F06BA718F9532F00314339 /* NCCalculatorViewController.h */,
+			);
+			name = Calculator;
+			sourceTree = "<group>";
+		};
+		314221C918FC14BD00371D7B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				314221CA18FC14F400371D7B /* NCCalculatorModel.h */,
+				314221CB18FC14F400371D7B /* NCCalculatorModel.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24F06B8118F9530100314339 /* main.m in Sources */,
+				314221CC18FC14F400371D7B /* NCCalculatorModel.m in Sources */,
 				24F06BAA18F9532F00314339 /* NCCalculatorViewController.m in Sources */,
 				24F06B8518F9530100314339 /* NCAppDelegate.m in Sources */,
 				24F06B8818F9530100314339 /* NastyaCalculator3.xcdatamodeld in Sources */,
@@ -458,6 +488,7 @@
 				24F06BA318F9530100314339 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		24F06BA418F9530100314339 /* Build configuration list for PBXNativeTarget "NastyaCalculator3Tests" */ = {
 			isa = XCConfigurationList;
@@ -466,6 +497,7 @@
 				24F06BA618F9530100314339 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

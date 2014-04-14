@@ -2,9 +2,7 @@
 //  NastyaCalculator3Tests.m
 //  NastyaCalculator3Tests
 //
-//  Created by Maksim on 12.04.14.
-//  Copyright (c) 2014 Nastya. All rights reserved.
-//
+
 
 #import <XCTest/XCTest.h>
 

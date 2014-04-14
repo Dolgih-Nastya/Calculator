@@ -2,22 +2,19 @@
 //  NCCalculatorViewController.m
 //  NastyaCalculator3
 //
-//  Created by Maksim on 12.04.14.
-//  Copyright (c) 2014 Nastya. All rights reserved.
-//
+
 
 #import "NCCalculatorViewController.h"
 
 @interface NCCalculatorViewController ()
-@property(nonatomic, strong) IBOutlet UILabel  *sumLabel;
-@property(nonatomic, strong) IBOutlet UIButton *sumButton;
-@property(nonatomic, strong) IBOutlet UIButton *digitButton;
 @property(nonatomic, strong) IBOutlet UILabel  *resLabel;
-@property(nonatomic, strong) NSString* firstNumber;
-@property(nonatomic, strong) NSString* secondNumber;
-@property(nonatomic, strong) NSString* sign;
+
+@property(nonatomic, strong) NSString *firstNumber;
+@property(nonatomic, strong) NSString *secondNumber;
+@property(nonatomic, strong) NSString *sign;
 @property BOOL isFirstNumberFilled;
-@property(nonatomic, strong) NSString* result;
+@property(nonatomic, strong) NSString *result;
+
 @end
 
 @implementation NCCalculatorViewController
@@ -27,11 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.firstNumber  =  [NSString new];
-        self.secondNumber =  [NSString new];
-        self.sign = [NSString new];
-        self.result = [NSString new];
-        self.isFirstNumberFilled=NO;
+        
     }
     return self;
 }
@@ -39,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self resetValues];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -48,46 +42,45 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)SumButtonClick:(id)sender
-{
-    NSNumber * sum     = [NSNumber numberWithDouble:1+2];
-    self.sumLabel.text = [@"1 + 2 is " stringByAppendingString:[sum stringValue]];
-}
 
-- (IBAction)DigitalButonClick:(id)sender
+
+- (IBAction)digitalButonClick:(UIButton*)sender
 {
-    if (self.isFirstNumberFilled==NO)
-    {
-      self.firstNumber=[self.firstNumber stringByAppendingString:[(UIButton*) sender currentTitle]];
+    if (!self.isFirstNumberFilled)    {
+      self.firstNumber = [self.firstNumber stringByAppendingString:sender.currentTitle];
     }
-    else
-    {
-        self.secondNumber=[self.secondNumber stringByAppendingString:[(UIButton*) sender currentTitle]];
+    else    {
+        self.secondNumber = [self.secondNumber stringByAppendingString:sender.currentTitle];
     }
-    self.result = [self.result stringByAppendingString:[(UIButton*) sender currentTitle]];
+    self.result = [self.result stringByAppendingString:sender.currentTitle];
     self.resLabel.text = self.result;
 }
 
-- (IBAction)SignButtonClick:(id)sender
+- (IBAction)signButtonClick:(UIButton*)sender
 {
-    self.sign = [(UIButton*) sender currentTitle];
+    self.sign = sender.currentTitle;
     self.isFirstNumberFilled=YES;
-    self.result = [self.result stringByAppendingString:[(UIButton*) sender currentTitle]];
+    self.result = [self.result stringByAppendingString:sender.currentTitle];
     self.resLabel.text = self.result;
     
 }
 
-- (IBAction)IsButtonClick:(id)sender
+- (IBAction)isButtonClick:(UIButton*)sender
 {
     
     double value = [self Calculate];
-    self.result=[[self.result stringByAppendingString:[(UIButton*) sender currentTitle]] stringByAppendingString:[NSString stringWithFormat:@"%f", value]];
+    self.result=[[self.result stringByAppendingString:sender.currentTitle] stringByAppendingString:[NSString stringWithFormat:@"%0.4lf", value]];
     self.resLabel.text = self.result;
-    self.firstNumber=[NSString new];
-    self.secondNumber=[NSString new];
-    self.sign = [NSString new];
-    self.result = [NSString new];
-    self.isFirstNumberFilled=NO;
+    [self resetValues];
+}
+
+- (void)resetValues
+{
+    self.firstNumber  =  @"";
+    self.secondNumber =  @"";
+    self.sign = @"";
+    self.result = @"";
+    self.isFirstNumberFilled = NO;
 }
 
 - (double)Calculate
@@ -95,21 +88,27 @@
   
     double num1 = [self.firstNumber doubleValue];
     double num2 = [self.secondNumber doubleValue];
-    if ([self.sign isEqual:@"+"])
-    {
+    if ([self.sign isEqual:@"+"])                {
         return num1+num2;
-    }
-    else if ([self.sign isEqual:@"-"])
-    {
+    } else if ([self.sign isEqual:@"-"])         {
         return num1-num2;
-    }
-    else if ([self.sign isEqual:@"*"])
-    {
+    } else if ([self.sign isEqual:@"*"])         {
         return num1*num2;
-    }
-    else
-    {
-        return num1/num2;
+    } else if ([self.sign isEqualToString:@"/"]) {
+        if (num2!=0){  return num1/num2;
+        } else {[[[UIAlertView alloc] initWithTitle:@"Error"
+                                              message:@"Divide by zero"
+                                              delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil ]show];
+        return NAN;
+    }}
+    else{[[[UIAlertView alloc] initWithTitle:@"Error"
+                                     message:@"Sign is incorrect"
+                                     delegate:self
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles: nil ]show];
+        return NAN;
     }
 }
 @end

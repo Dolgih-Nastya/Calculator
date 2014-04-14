@@ -2,9 +2,7 @@
 //  NCAppDelegate.m
 //  NastyaCalculator3
 //
-//  Created by Maksim on 12.04.14.
-//  Copyright (c) 2014 Nastya. All rights reserved.
-//
+
 
 #import "NCAppDelegate.h"
 
