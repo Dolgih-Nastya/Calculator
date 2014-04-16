@@ -5,14 +5,18 @@
 
 
 #import "NCCalculatorViewController.h"
+#import "NCCalculatorModel.h"
 
 @interface NCCalculatorViewController ()
 @property(nonatomic, strong) IBOutlet UILabel  *resLabel;
+@property(nonatomic, strong) NCCalculatorModel *calcModel;
 
 @property(nonatomic, strong) NSString *firstNumber;
 @property(nonatomic, strong) NSString *secondNumber;
 @property(nonatomic, strong) NSString *sign;
+@property BOOL isSignFilled;
 @property BOOL isFirstNumberFilled;
+@property BOOL isDotPresent;
 @property(nonatomic, strong) NSString *result;
 
 @end
@@ -32,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.calcModel = [NCCalculatorModel new];
     [self resetValues];
     // Do any additional setup after loading the view from its nib.
 }
@@ -58,18 +63,46 @@
 
 - (IBAction)signButtonClick:(UIButton*)sender
 {
-    self.sign = sender.currentTitle;
-    self.isFirstNumberFilled=YES;
-    self.result = [self.result stringByAppendingString:sender.currentTitle];
-    self.resLabel.text = self.result;
+    if (!self.isSignFilled){
+        self.sign = sender.currentTitle;
+        self.isSignFilled = YES;
+        self.isFirstNumberFilled=YES;
+        self.isDotPresent = NO;
+        self.result = [self.result stringByAppendingString:sender.currentTitle];
+        self.resLabel.text = self.result;
+    }
     
+}
+
+- (IBAction)dotButtonClick:(UIButton*)sender
+{
+    if (!self.isDotPresent){
+        if (!self.isFirstNumberFilled){
+            self.firstNumber = [self.firstNumber stringByAppendingString:sender.currentTitle];
+        }
+        else {
+            self.secondNumber = [self.result stringByAppendingString: sender.currentTitle];
+        }
+        self.result = [self.result stringByAppendingString:sender.currentTitle];
+        self.resLabel.text = self.result;
+        self.isDotPresent = YES;
+    }
 }
 
 - (IBAction)isButtonClick:(UIButton*)sender
 {
     
-    double value = [self Calculate];
-    self.result=[[self.result stringByAppendingString:sender.currentTitle] stringByAppendingString:[NSString stringWithFormat:@"%0.4lf", value]];
+    NSError *error = nil;
+    double value = [self.calcModel calculateWithFirstNumber:@(self.firstNumber.doubleValue)
+                                               secondNumber:@(self.secondNumber.doubleValue)
+                                                       sign:self.sign
+                                                       error:&error].doubleValue;
+    if (!error){
+        self.result = [[self.result stringByAppendingString:sender.currentTitle] stringByAppendingString: [NSString stringWithFormat:@"%0.4lf", value]];
+    }else{
+        self.result=@"Error";
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:error.userInfo[@"description"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show ];
+    }
     self.resLabel.text = self.result;
     [self resetValues];
 }
@@ -80,35 +113,8 @@
     self.secondNumber =  @"";
     self.sign = @"";
     self.result = @"";
+    self.isSignFilled = NO;
     self.isFirstNumberFilled = NO;
 }
 
-- (double)Calculate
-{
-  
-    double num1 = [self.firstNumber doubleValue];
-    double num2 = [self.secondNumber doubleValue];
-    if ([self.sign isEqual:@"+"])                {
-        return num1+num2;
-    } else if ([self.sign isEqual:@"-"])         {
-        return num1-num2;
-    } else if ([self.sign isEqual:@"*"])         {
-        return num1*num2;
-    } else if ([self.sign isEqualToString:@"/"]) {
-        if (num2!=0){  return num1/num2;
-        } else {[[[UIAlertView alloc] initWithTitle:@"Error"
-                                              message:@"Divide by zero"
-                                              delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil ]show];
-        return NAN;
-    }}
-    else{[[[UIAlertView alloc] initWithTitle:@"Error"
-                                     message:@"Sign is incorrect"
-                                     delegate:self
-                                     cancelButtonTitle:@"OK"
-                                     otherButtonTitles: nil ]show];
-        return NAN;
-    }
-}
 @end

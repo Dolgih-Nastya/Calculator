@@ -184,8 +184,8 @@
 		314221C918FC14BD00371D7B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				314221CA18FC14F400371D7B /* NCCalculatorModel.h */,
 				314221CB18FC14F400371D7B /* NCCalculatorModel.m */,
+				314221CA18FC14F400371D7B /* NCCalculatorModel.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";

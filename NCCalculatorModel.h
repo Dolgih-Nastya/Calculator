@@ -9,5 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface NCCalculatorModel : NSObject
+- (NSNumber *)calculateWithFirstNumber:(NSNumber *)firstNumber
+                       secondNumber:(NSNumber *)secondNumber
+                               sign:(NSString *)sign
+                                 error: (NSError **) error;
+
 
 @end

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3FD6C820-4FBB-4242-9844-DE0BD59457DB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NastyaCalculator3</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1185E90D-CB69-489B-8830-8DC4092F15AF</key>
+		<string>https://github.com/Dolgih-Nastya/Calculator.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>NastyaCalculator3.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1185E90D-CB69-489B-8830-8DC4092F15AF</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Dolgih-Nastya/Calculator.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1185E90D-CB69-489B-8830-8DC4092F15AF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1185E90D-CB69-489B-8830-8DC4092F15AF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Calculator</string>
+		</dict>
+	</array>
+</dict>
+</plist>
